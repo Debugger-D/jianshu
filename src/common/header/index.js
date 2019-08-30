@@ -27,7 +27,7 @@ const Header = (props) =>  {
   )
 }
 
-const mapStateProps = ({ focused }) => {
+const mapStateProps = ({ header: { focused } }) => {
   return {
     focused
   }

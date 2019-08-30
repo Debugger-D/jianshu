@@ -1,24 +1,8 @@
-// import { Action } from 'Directory';
+import { combineReducers } from 'redux'
+import { reducer as headRedcer} from '../common/header/store/index'
 
-const INITIAL_STATE = {
-  focused: false
-};
+const reducer =  combineReducers({
+  header: headRedcer
+})
 
-/**
-* @param {Object} state - Default application state
-* @param {Object} action - Action from action creator
-* @returns {Object} New state
-*/
-export default (state = INITIAL_STATE, action) => {
-  switch (action.type) {
-    case 'search_focus':
-      return {
-        focused: true
-      };
-    case 'search_blur':
-      return {
-        focused: false
-      };
-    default: return state;
-  }
-};
+export default reducer;
