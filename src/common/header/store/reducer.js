@@ -1,19 +1,16 @@
-// import { Action } from 'Directory';
+import constant from './constant';
+import { fromJS } from 'immutable';
 
-const INITIAL_STATE = {
+const INITIAL_STATE = fromJS({
   focused: false
-};
+});
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case 'search_focus':
-      return {
-        focused: true
-      };
-    case 'search_blur':
-      return {
-        focused: false
-      };
+    case constant.SEARCH_FOCUS:
+      return state.set('focused', true);
+    case constant.SEARCH_BLUR:
+      return state.set('focused', false);
     default: return state;
   }
 };

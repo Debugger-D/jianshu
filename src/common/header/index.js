@@ -1,6 +1,7 @@
 import React from 'react';
 import { HeaderWrapper, Logo, Nav, NavItem, NavSearch, Addition, Button } from './style';
 import { connect } from 'react-redux';
+import { createType } from './store'
 
 const Header = (props) =>  {
 
@@ -27,21 +28,20 @@ const Header = (props) =>  {
   )
 }
 
-const mapStateProps = ({ header: { focused } }) => {
+const mapStateProps = (state) => {
   return {
-    focused
+    focused: state.header.get('focused')
   }
 }
 
 const mapDispatchProps = (dispatch) => {
   return {
     handleFocus() {
-      console.log(3333)
-      dispatch({ type: 'search_focus' })
+      dispatch(createType.serch_focus())
     },
 
     handleBlur() {
-      dispatch({ type: 'search_blur' })
+      dispatch(createType.serch_blur())
     }
   }
 }
