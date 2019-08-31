@@ -30,7 +30,7 @@ const Header = (props) =>  {
 
 const mapStateProps = (state) => {
   return {
-    focused: state.header.get('focused')
+    focused: state.get('header').get('focused')
   }
 }
 
