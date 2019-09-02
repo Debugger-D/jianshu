@@ -4,7 +4,6 @@ import { TopicWrapper, TopicItem } from '../style'
 
 class Topic extends Component {
   render() {
-    console.log(this.props.list)
     return (
       <TopicWrapper>
         {this.props.list.map(item => {
@@ -21,7 +20,6 @@ class Topic extends Component {
 }
 
 const mapState = (state) => {
-  console.log(state.get('home').get('list'))
   return {
     list: state.get('home').get('topicList')
   }
