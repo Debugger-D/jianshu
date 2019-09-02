@@ -11,12 +11,12 @@ class List extends Component {
           list.map((item) => {
             return (
               <ListItem key={item.get('id')}>
-                <img className='pic' src={item.get('imgurl')} alt='' />
-                <ListInfo>
-                  <h3 className='title'>{item.get('title')}</h3>
-                  <p className='desc'>{item.get('desc')}</p>
-                </ListInfo>
-              </ListItem>
+									<img alt='' className='pic' src={item.get('imgUrl')} />
+									<ListInfo>
+										<h3 className='title'>{item.get('title')}</h3>
+										<p className='desc'>{item.get('desc')}</p>
+									</ListInfo>
+								</ListItem>
             )
           })
         }
@@ -27,7 +27,7 @@ class List extends Component {
 
 const mapState = (state) => {
   return {
-    list: state.get('home').get('topicList')
+    list: state.get('home').get('articleList')
   }
 }
 

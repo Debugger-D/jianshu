@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import axios from 'axios'
+import { connect } from 'react-redux';
+
+import { createType } from './store'
 import {
 	HomeWrapper,
 	HomeLeft,
@@ -8,6 +12,16 @@ import Topic from './components/Topic'
 import List from './components/List'
 
 class Home extends Component {
+  componentDidMount() {
+    const { setHomeJson } = this.props;
+    axios.get('/api/home.json').then(res => {
+      console.log(res.data.data);
+      let action = createType.change_home_data()
+      action.payload = res.data.data
+      setHomeJson(action)
+    })
+  }
+
   render() {
     return (
       <HomeWrapper>
@@ -23,4 +37,11 @@ class Home extends Component {
   }
 }
 
-export default Home;
+const mapDispatch = (dispatch) => {
+  return {
+    setHomeJson(action) {
+      dispatch(action)
+    }
+  }
+}
+export default connect(null, mapDispatch)(Home);

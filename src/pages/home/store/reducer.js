@@ -1,33 +1,18 @@
 import { fromJS } from 'immutable'
+import constant from './constant'
+
 const defaultState = fromJS({
-  topicList:[
-    {
-      id: 1,
-      title: '社会热点',
-      imgUrl: 'https://upload-images.jianshu.io/upload_images/3627484-1f6d669e8c4fff21.jpeg?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/240'
-    },
-    {
-      id: 2,
-      title: '社会热点',
-      imgUrl: 'https://upload-images.jianshu.io/upload_images/3627484-1f6d669e8c4fff21.jpeg?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/240'
-    },
-  ],
-  articleList:[
-    {
-      id: 1,
-      title: '社会热点',
-      imgUrl: 'https://upload-images.jianshu.io/upload_images/3627484-1f6d669e8c4fff21.jpeg?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/240'
-    },
-    {
-      id: 2,
-      title: '社会热点',
-      imgUrl: 'https://upload-images.jianshu.io/upload_images/3627484-1f6d669e8c4fff21.jpeg?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/240'
-    },
-  ]
+  topicList:[],
+  articleList:[]
 })
 
 const reducer = (state = defaultState, action) => {
   switch(action.type){
+    case constant.CHANGE_HOME_DATA:
+      return state.merge({
+        topicList: fromJS(action.payload.topicList),
+        articleList: fromJS(action.payload.articleList),
+      })
     default:
       return state
   }

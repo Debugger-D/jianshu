@@ -1,3 +1,5 @@
 import reducer from './reducer'
+import constant from './constant'
+import createType from './createType'
 
-export { reducer }
+export { reducer, constant, createType }
