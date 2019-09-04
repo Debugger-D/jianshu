@@ -1,34 +1,46 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ListItem, ListInfo } from '../style'
+import { ListItem, ListInfo, LoadMore } from '../style'
+import { actionCreators } from '../store'
 
 class List extends Component {
   render(){
-    const { list } = this.props;
+    const { list, getArticleList, page } = this.props;
     return (
       <div>
         {
-          list.map((item) => {
+          list.map((item, index) => {
             return (
-              <ListItem key={item.get('id')}>
-									<img alt='' className='pic' src={item.get('imgUrl')} />
-									<ListInfo>
-										<h3 className='title'>{item.get('title')}</h3>
-										<p className='desc'>{item.get('desc')}</p>
-									</ListInfo>
-								</ListItem>
+              <ListItem key={index}>
+                <img alt='' className='pic' src={item.get('imgUrl')} />
+                <ListInfo>
+                  <h3 className='title'>{item.get('title')}</h3>
+                  <p className='desc'>{item.get('desc')}</p>
+                </ListInfo>
+              </ListItem>
             )
           })
         }
+        <LoadMore onClick={() => getArticleList(page)}>更多文章</LoadMore>
       </div>
     )
   }
 }
 
-const mapState = (state) => {
+const mapDispatch = dispatch => {
   return {
-    list: state.get('home').get('articleList')
+    getArticleList: (page) => {
+      const action = actionCreators.getMoreList(page);
+      dispatch(action)
+    }
   }
 }
 
-export default connect(mapState)(List);
+const mapState = (state) => {
+  return {
+    list: state.get('home').get('articleList'),
+    page: state.get('home').get('articlePage')
+  }
+}
+
+export default connect(mapState, mapDispatch)(List);
