@@ -10,10 +10,10 @@ function App() {
   return (
     <Provider store={store}>
       <div className="App dell">
-        <Header />
         <BrowserRouter>
+          <Header />
           <Route path='/' exact component={Home} ></Route>
-          <Route path='/detail' exact component={Detail} ></Route>
+          <Route path='/detail/:id' exact component={Detail} ></Route>
         </BrowserRouter>
       </div>
     </Provider>

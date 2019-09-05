@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { actionCreators } from './store'
 
@@ -10,7 +10,7 @@ import {
 import Topic from './components/Topic'
 import List from './components/List'
 
-class Home extends Component {
+class Home extends PureComponent {
   componentDidMount() {
     const { getHomeInfo } = this.props;
     getHomeInfo()
